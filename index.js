@@ -2,11 +2,12 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
+const generateMarkdown = require("./utils/generateMarkdown.js");
 
 // promisify the writeFile function
 const writeFileAsync = util.promisify(fs.writeFile);
 
-// array of questions for user
+// function to prompt the user for data that we will be writing to the readMe
 
 function promptUser() {
   return inquirer.prompt([
@@ -23,7 +24,7 @@ function promptUser() {
     {
       type: "input",
       name: "installation",
-      message: "What is your favorite hobby?",
+      message: "What files need to be installed?",
     },
     {
       type: "list",
@@ -44,16 +45,32 @@ function promptUser() {
     {
       type: "input",
       name: "linkedin",
-      message: "Enter your LinkedIn URL.",
+      message: "Enter your email address.",
     },
   ]);
 }
 
 // function to write README file
-function writeToFile(fileName, data) {}
+// takes in the answers object and writes to the markdown file
+// function writeToFile(fileName, answers) {}
 
+async function init() {
+  console.log("hi");
+  try {
+    const answers = await promptUser();
+
+    const html = generateMarkdown(answers);
+
+    await writeFileAsync("Markdown.md", html);
+
+    console.log("Successfully wrote to Markdown.md");
+  } catch (err) {
+    console.log(err);
+  }
+}
+init();
 // function to initialize program
-function init() {}
+// function init() {}
 
 // function call to initialize program
-init();
+// init();
