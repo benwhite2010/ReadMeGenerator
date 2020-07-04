@@ -34,7 +34,7 @@ function promptUser() {
       choices: [
         "MIT",
         "Mozilla Public License 2.0",
-        "Open Software License 3.0",
+        "Open Database License",
         "ISC",
       ],
     },
@@ -65,12 +65,10 @@ async function init() {
 
     await writeFileAsync(`${answers.repository}.md`, readMe);
 
-    console.log("Successfully wrote to Markdown.md");
+    console.log(`Successfully wrote to ${answers.repository}.md`);
   } catch (err) {
     console.log(err);
   }
 }
 // call the function to initialize the page
 init();
-
-

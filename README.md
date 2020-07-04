@@ -1,2 +1,8 @@
-Hello, this is the readMe generator application I built.
-It is not complete, but I psuedo coded as much as I could given the time constraints
+
+  [![License: MIT ](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)]
+  
+  # Table of contents
+  [description](#description)
+  [installation](#installation)
+
+  
