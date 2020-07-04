@@ -8,6 +8,7 @@ const generateMarkdown = require("./utils/generateMarkdown.js");
 const writeFileAsync = util.promisify(fs.writeFile);
 
 // function to prompt the user for data that we will be writing to the readMe
+// stores all relevant data within the answers object
 
 function promptUser() {
   return inquirer.prompt([
@@ -44,7 +45,7 @@ function promptUser() {
     },
     {
       type: "input",
-      name: "linkedin",
+      name: "email",
       message: "Enter your email address.",
     },
   ]);
@@ -54,23 +55,22 @@ function promptUser() {
 // takes in the answers object and writes to the markdown file
 // function writeToFile(fileName, answers) {}
 
+// function to initialize program
 async function init() {
-  console.log("hi");
+  console.log("working");
   try {
     const answers = await promptUser();
 
-    const html = generateMarkdown(answers);
+    const readMe = generateMarkdown(answers);
 
-    await writeFileAsync("Markdown.md", html);
+    await writeFileAsync(`${answers.repository}.md`, readMe);
 
     console.log("Successfully wrote to Markdown.md");
   } catch (err) {
     console.log(err);
   }
 }
+// call the function to initialize the page
 init();
-// function to initialize program
-// function init() {}
 
-// function call to initialize program
-// init();
+
